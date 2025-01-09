@@ -16,6 +16,13 @@ const getAnimalFacts = async (animal: string): Promise<string> => {
             Remove backticks and other markdown formatting.`;
     const resp = await generativeModel.generateContent(prompt);
 
+    console.log(JSON.stringify({
+        severity: 'DEBUG',
+        message: 'Content is generated',
+        prompt: prompt,
+        response: resp.response,
+    }));
+
     if (!resp.response.candidates) {
         throw new Error('Did not receive response candidates.')
     }
